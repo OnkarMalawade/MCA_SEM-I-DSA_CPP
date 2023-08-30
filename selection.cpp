@@ -1,10 +1,5 @@
 #include <iostream>
 using namespace std;
-void swap(int *a, int *b) {
-  int temp = *a;
-  *a = *b;
-  *b = temp;
-}
 void printArray(int array[], int size) {
   for (int i = 0; i < size; i++) {
     cout << array[i] << " ";
@@ -19,7 +14,9 @@ void selectionSort(int array[], int size) {
       if (array[i] < array[min_idx])
         min_idx = i;
     }
-    swap(&array[min_idx], &array[step]);
+    int temp = min_idx;
+    array[min_idx] = array[step];
+    array[i] = temp; 
   }
 }
 
