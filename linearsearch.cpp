@@ -1,13 +1,13 @@
 #include<iostream>
 using namespace std;
-bool search(int arr[],int size,int key){
+int linearSearch(int arr[],int size,int key){
     for (int i = 0; i < size; i++)
     {
         if(arr[i]==key){
-             return 1;
+             return i;
         }
     }
-    return 0;
+    return -1;
 }
 
 int main(){
@@ -15,12 +15,6 @@ int main(){
     cout<<"\n Enter Key:";
     int key;
     cin>>key;
-    bool found=search(arr,10,key);
-    if (found)
-    {//found ==1
-        cout<<"Key is Present\n";
-    }else{
-        cout<<"Not Key Present\n";
-    }
+    cout << "\n Check Location of the if its Founded: " << linearSearch(arr, sizeof(arr)/sizeof(arr[0]), key);
     return 0;
 }
