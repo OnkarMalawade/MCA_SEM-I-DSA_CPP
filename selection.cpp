@@ -14,7 +14,7 @@ void selectionSort(int array[], int size) {
       if (array[i] < array[min_idx])
         min_idx = i;
     }
-    int temp = min_idx;
+    int temp = array[min_idx;]
     array[min_idx] = array[step];
     array[i] = temp; 
   }
