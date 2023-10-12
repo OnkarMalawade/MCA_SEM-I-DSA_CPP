@@ -15,14 +15,16 @@ node* first = NULL;
 node* temp = NULL;
 node* tail = NULL;
 
+bool isEmpty(){
+	return head == NULL;
+}
 void addnode(int k)
 {
-	node* ptr
-		= (node*)malloc(sizeof(node));
+	node* ptr = (node*)malloc(sizeof(node));
 	ptr->key = k;
 	ptr->next = NULL;
 	ptr->prev = NULL;
-	if (head == NULL) {
+	if (isEmpty() == true) {
 		head = ptr;
 		first = head;
 		tail = head;
@@ -36,7 +38,7 @@ void addnode(int k)
 	}
 	i++;
 }
-void traverse()
+void traverse() // PrintList
 {
 	node* ptr = head;
 	while (ptr != NULL) {
@@ -48,12 +50,11 @@ void traverse()
 }
 void insertatbegin(int k)
 {
-	node* ptr
-		= (node*)malloc(sizeof(node));
+	node* ptr = (node*)malloc(sizeof(node));
 	ptr->key = k;
 	ptr->next = NULL;
 	ptr->prev = NULL;
-	if (head == NULL) {
+	if (isEmpty() == true) { // or head == NULL
 		first = ptr;
 		first = head;
 		tail = head;
@@ -69,12 +70,11 @@ void insertatbegin(int k)
 
 void insertatend(int k)
 {
-	node* ptr
-		= (node*)malloc(sizeof(node));
+	node* ptr = (node*)malloc(sizeof(node));
 	ptr->key = k;
 	ptr->next = NULL;
 	ptr->prev = NULL;
-	if (head == NULL) {
+	if (head == NULL) { // isEmpty() == true
 		first = ptr;
 		first = head;
 		tail = head;
@@ -91,8 +91,7 @@ void insertatend(int k)
 void insertatpos(int k, int pos)
 {
 	if (pos < 1 || pos > i + 1) {
-		cout <<"Please enter a"
-			" valid position\n";
+		cout <<"Please enter a valid position!!!\n";
 	}
 	else if (pos == 1) {
 		insertatbegin(k);
@@ -108,9 +107,7 @@ void insertatpos(int k, int pos)
 		}
 
 		node **da, **ba;
-		node* ptr
-			= (node*)malloc(
-				sizeof(node));
+		node* ptr = (node*)malloc(sizeof(node));
 		ptr->next = NULL;
 		ptr->prev = NULL;
 		ptr->key = k;
@@ -140,8 +137,7 @@ void delatend()
 void delatpos(int pos)
 {
 	if (pos < 1 || pos > i + 1) {
-		cout <<"Please enter a"
-			" valid position\n";
+		cout <<"Please enter a valid position\n";
 	}
 	else if (pos == 1) {
 		delatbegin();
@@ -197,48 +193,67 @@ int main()
 
 	cout <<"Linked List: ";
 	traverse();
-
+	
+	cout << "\nCount of the Doubly Linked List: " << i;
 	cout <<"\n";
 
+	cout <<"\nLinked List after inserting at beginning: ";
 	insertatbegin(1);
-	cout <<"Linked List after"
-		" inserting 1 "
-		"at beginning: ";
 	traverse();
 
 	insertatend(0);
-	cout <<"Linked List after "
-		"inserting 0 at end: ";
+	cout <<"Linked List after inserting 0 at end: ";
 	traverse();
 
-	insertatpos(44, 3);
-	cout <<"Linked List after "
-		"inserting 44 "
-		"after 3rd Node: ";
-	traverse();
+	cout << "\nDo you want to insert Element in the Linked List(Y/N): ";
+	char ch;
+	cin >> ch;
+	switch(ch){
+		case 'Y':
+			int a, b;
+			cout <<"\nPlease Enter Data want to be insert:";
+			cin >> a;
+			cout <<"\nPlease Enter Position want to be insert:";
+			cin >> b;
+			cout <<"\nLinked List after inserting "<< a <<" after "<< b <<"rd Node: ";
+			insertatpos(a, b);
+			traverse();
+			break;
+		case 'N':
+			cout << "\nThank You!!!";
+			traverse();
+			break;
+		default:
+			exit(0);
+	}
 	
-	cout<<"\nSearching Element in the Linked list: ";
-	int n;
-	cin >> n;
-	search(n);
-
+	int j;
+	cout << "\nIf you want to search in the Linked list: \n  Press 1 \n  Stop to Search in Linked List: Press Any Number: ";
+	cin >> j;
+	while(j == 1){
+		cout<<"\nSearching Element in the Linked list: ";
+		int n;
+		cin >> n;
+		search(n);
+		cout << "\nSearching Operation of Linked List want perform Again Press 1: ";
+		cin >> j;
+	}
+	
 	cout <<"\n \n";
 
 	delatbegin();
-	cout <<"Linked List after "
-		"deleting node "
-		"at beginning: ";
+	cout <<"Linked List after deleting node at beginning: ";
 	traverse();
 	
 	delatend();
-	cout <<"Linked List after "
-		"deleting node at end: ";
+	cout <<"Linked List after deleting node at end: ";
 	traverse();
 
-	cout <<"Linked List after "
-		"deleting node "
-		"at position 5: ";
-	delatpos(5);
+	cout << "\nEnter the element position you want Delete: ";
+	int d;
+	cin >> d;
+	cout <<"Linked List after deleting node at position "<< d <<": ";
+	delatpos(d);
 	traverse();
 
 	return 0;

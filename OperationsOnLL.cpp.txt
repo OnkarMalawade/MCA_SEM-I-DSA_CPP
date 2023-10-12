@@ -180,12 +180,11 @@ int main(){
 	removeAt(3);
 	cout<<"\n After Remove At position Node Linked list: ";
 	printList();
-	
+	reverseList(&head);
 	insertAt(1,10);
 	cout<<"\n Insert At Linked list: ";
 	printList();
 	cout<<"\n Reversed Linked list: ";
-	reverseList(&head);
 	printList();
 	sort();
 	cout<<"\n Sorted Link List";
@@ -197,6 +196,5 @@ int main(){
 	search(n);
 	*/
 }
-
 
 
